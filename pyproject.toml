@@ -1,0 +1,60 @@
+[tool.poetry]
+name = "auto_thank-you_letter"
+description = "generate thank-you letter in Japanese language"
+authors = ["anosillus <anosillus@gmail.com>"]
+license = "MIT"
+readme = "README.rst"
+keywords = ["auto_thank-you_letter"]
+packages = [
+    { include = "auto_thank-you_letter", from = "src"},
+]
+version = "0.1"
+
+[tool.poetry.dependencies]
+python = "3.9.1"
+PySimpleGUI = "^4.38.0"
+logzero = "^1.7.0"
+capture = "^0.1"
+
+[tool.poetry.dev-dependencies]
+pip = "^21.0.1"
+setuptools = "^54.2.0"
+tox = "^3.23.0"
+pytest = "^6.2.2"
+pytest-cov = "^2.11.1"
+pytest-logger = "^0.5.1"
+pytest-mock = "^3.5.1"
+pytest-runner = "^5.3.0"
+pysen = {extras = ["lint"], version = "^0.9.0"}
+
+[tool.pysen.lint]
+enable_black = true
+enable_flake8 = true
+enable_isort = true
+enable_mypy = true
+mypy_preset = "strict"
+line_length = 88
+py_version = "py39"
+
+[[tool.pysen.lint.mypy_targets]]
+paths = ["."]
+
+[[tool.pysen.lint.mypy_targets]]
+paths = [".", "tests/"]
+
+[tool.pysen.lint.source]
+includes = ["."]
+include_globs = ["**/*.template"]
+exclude_globs = ["**/*_grpc.py"]
+
+[tool.pysen.lint.mypy_modules."pysen.scripts"]
+preset = "entry"
+
+[tool.pysen.lint.mypy_modules."numpy"]
+ignore_errors = true
+
+[tool.pytest.ini_options]
+minversion = 6.0
+xfail_strict=true
+addopts = "--strict-markers --verbose --cov=src --cov-report=html"
+testpaths = "tests"

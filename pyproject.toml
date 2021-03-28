@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "auto_thank-you_letter"
+name = "thank-you_letter-generator"
 description = "generate thank-you letter in Japanese language"
 authors = ["anosillus <anosillus@gmail.com>"]
 license = "MIT"
 readme = "README.rst"
-keywords = ["auto_thank-you_letter"]
+keywords = ["thank-you_letter_generator"]
 packages = [
-    { include = "auto_thank-you_letter", from = "src"},
+    { include = "thank-you_letter_generator", from = "src"},
 ]
 version = "0.1"
 
